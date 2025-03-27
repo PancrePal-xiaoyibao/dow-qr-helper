@@ -1,0 +1,108 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="refresh" content="30">
+  <style type="text/css">
+    #container{
+      display: grid;
+      grid-template-columns: 602px 602px 602px;
+      grid-template-rows: 549px 549px 549px;
+    }
+
+    .item {
+      font-size: 4em;
+      text-align: center;
+      border: 1px solid #e5e4e9;
+    }
+
+    .item-1 {
+      background-color: #d0e4a9;
+    }
+
+    .item-2 {
+      background-color: #f68f26;
+    }
+
+    .item-3 {
+      background-color: #4ba946;
+    }
+
+    .item-4 {
+      background-color: #0376c2;
+    }
+
+    .item-5 {
+      background-color: #c077af;
+    }
+
+    .item-6 {
+      background-color: #4dc7ec;
+    }
+
+    :root {
+      color-scheme: light dark;
+    }
+
+    @media (prefers-color-scheme: dark) {
+        color: #999;
+        background-color: #222;
+    }
+
+    @media (prefers-color-scheme: light) {
+        color: #333;
+        background-color: #DDD;
+    }
+
+  </style>
+  <script>
+    window.onload = function() {
+      const images = document.querySelectorAll('img');
+      images.forEach(img => {
+        const timestamp = new Date().getTime();
+        img.src = `${img.src}?v=${timestamp}`;
+      });
+    };
+
+
+    function restartService(name) {
+      const data = { name: name };
+      const requestOptions = {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(data)
+      };
+      fetch('http://saoma.xiao-x-bao.com.cn:8080/restart', requestOptions)
+      .then(response => {
+        if (response.ok) {
+            console.log('显示二维码请求成功');
+        } else {
+            console.error('显示二维码请求失败');
+        }
+      })
+     .catch(error => {
+        console.error('发生错误:', error);
+     });
+	    alert("点击[显示二维码]按钮等待120秒，二维码出现后，在30秒内完成扫码! 扫码完成登录成功后二维码自动隐藏!")
+  }
+
+  </script>
+</head>
+
+<body>
+  请点击显示二维码按钮等待120秒，二维码出现后，在30秒内完成扫码。
+  <div id="container">
+    <div class="item item-2">小肺宝<img src="xiaofeibao/tmp/login.png" /> <button onclick="restartService('saas')">显示二维码</button></div>
+    <div class="item item-1">小萌宝<img src="xiaomengbao/tmp/login.png"> <button onclick="restartService('xiaomengbao')">显示二维码</button></div>
+    <div class="item item-3">小飞侠<img src="xiaofeixia/tmp/login.png"> <button onclick="restartService('saas')">显示二维码</button></div>
+    <div class="item item-5">小妍宝<img src="xiaoyanbao/tmp/login.png"><button onclick="restartService('xiaoyanbao')">显示二维码</button></div>
+    <div class="item item-5">小粉宝<img src="xiaofenbao/tmp/login.png"><button onclick="restartService('xiaofenbao')">显示二维码</button></div>
+    <!--div class="item item-4">小胃宝<img src="xiaoweibao/tmp/login.png"></div-->
+    <div class="item item-3">小胰宝宝亲护版<img src="xiaoyibaolite/tmp/login.png"> <button onclick="restartService('xiaoyibaolite')">显示二维码</button></div>
+    <div class="item item-2">小胰宝宝专护版<img src="xiaoyibaopro/tmp/login.png"><button onclick="restartService('xiaoyibaopro')">显示二维码</button></div>
+  </div>
+
+</body>
+</html>    
